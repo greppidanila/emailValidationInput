@@ -1,0 +1,143 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root{
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --default-color: hsl(200, 4%, 60%);
+    --active-color: hsl(200, 70%, 56%);
+    --error-color: hsl(353, 64%, 53%);
+    --border-color: hsl(200, 4%, 64%);
+    --text-color: hsl(200, 4%, 24%);
+    --body-color: hsl(0, 0%, 100%);
+
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: 1rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+}
+
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body,
+input {
+    font-size: var(--normal-font-size);
+    font-family: var(--body-font);
+    color: var(--text-color);
+}
+
+body {
+    background-color: var(--body-color);
+}
+
+/*=============== INPUT FIELD ===============*/
+.container{
+    height: 100vh;
+    margin-inline: 1.5rem; /*margen en línea (izquierda y derecha)*/ 
+    display: grid; /*para organizar a elementos hijos*/
+    place-items: center; /*centrar vertical y horizontalmente los elementos hijos*/
+}
+
+.form{
+    width: 100%;
+    max-width: 340px;
+}
+
+.formField{
+    position: relative;
+}
+
+.formInput{
+    width: 100%;
+    border: 3px solid var(--default-color);
+    padding: 1.4rem 1.4rem 1.4rem 4.5rem;
+    border-radius: 4rem;
+    outline: none;
+    font-weight: 500;
+    transition: border-color .4s, box-shadow .4s;
+}
+
+.formInput::placeholder{
+    color: var(--text-color)
+}
+
+.formLabel{
+    position: absolute;
+    left: 1.5rem;
+    top: -.65rem;
+    background-color: var(--body-color);
+    padding: 2px;
+    font-size: var(--small-font-size);
+    font-weight: 500;
+}
+
+.formIcon{
+    height: max-content;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 0;
+    bottom: 0; /*ocupa todo el espacio vertical disponible dentro de formField. */
+    margin-block: auto; /*coloca en el centro vertical*/
+}
+
+
+.formField::after {
+    content: "";
+    position: absolute;
+    height: 28px;
+    border: 1px solid var(--border-color);
+    left: 3.75rem;
+    top: 0;
+    bottom: 0;
+    margin-block: auto;
+}
+
+.formError {
+    position: absolute;
+    left: 1.5rem;
+    bottom: -1.5rem;
+    display: flex;
+    align-items: center;
+    column-gap: .25rem;
+    color: var(--error-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s;
+}
+
+.formError i {
+    font-size: 1rem;
+}
+
+.formError span {
+    font-size: var(--smaller-font-size);
+    font-weight: 500;
+}
+
+/* Active focus & valid field color */
+.formInput:focus,
+.valid .formInput {
+    border-color: var(--active-color);
+    box-shadow: 0 8px 24px hsla(200, 70%, 56%, .3);
+}
+
+/* Invalid field color */
+.invalid .formInput {
+    border-color: var(--error-color);
+    box-shadow: 0 8px 24px hsla(353, 64%, 53%, .3);
+}
+
+.invalid .formError {
+    opacity: 1;
+}
